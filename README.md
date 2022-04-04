@@ -1,2 +1,2 @@
 # Tienda-Online
-creación de una tienda online para Desarrollo Web
+creación de una tienda online para Desarrollo Web.
