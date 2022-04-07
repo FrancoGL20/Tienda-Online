@@ -1,5 +1,5 @@
 # Tienda-Online
-    El proyecto consta de una páginaCreación de una tienda online para Desarrollo Web.
+    El proyecto consta de la creación de una página de una tienda online para Desarrollo Web.
 ### Estructura de la DB:
 * Usuario:
     1. id_usuario **PK**
