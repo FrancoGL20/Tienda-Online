@@ -3,6 +3,9 @@
     padding: 0;
     margin: 0;
 }
-header{
-    background-color: aqua;
+body { padding-top: 6.9vh; } 
+main{
+    /* margin-top: 70px; */
+    background-color: #0a0a0a ;
+    color: white;
 }

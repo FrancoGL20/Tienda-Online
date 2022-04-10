@@ -6,57 +6,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de inicio</title>
-    <!-- <link rel="preload" href="css/normalize.css" as="style">
+    <!-- normalize -->
+    <link rel="preload" href="css/normalize.css" as="style">
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="preload" href="css/styles.css" as="style">
-    <link rel="stylesheet" href="css/styles.css"> -->
+    <!-- bootstrap 3 -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!-- estilos -->
+    <link rel="preload" href="css/styles.css" as="style">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
+    <!-- barra de navegación -->
     <header>
-        <!-- para hacerlo responsive y al hacerse chico funciona bien -->
-        <!-- <nav class="navbar navbar-default">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collaspe">
-                    <span class="sr-only">Cambiar Navegacion</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="#" class="navbar-brand">TiendaOnline F</a>
-                <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="#">otro inicio</a></li>
-                        <li><a href="#">otro inicio</a></li>
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Iniciar sesión
-                                <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Usuario normal</a></li>
-                                <li><a href="#">Super usuario</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav> -->
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
+                <!-- responsividad del header, marca -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                      </button>
-                    <a class="navbar-brand" href="#">WebSiteName</a>
+                    </button>
+                    <!-- marca -->
+                    <a class="navbar-brand" href="#">Geek Store F</a>
                 </div>
+
                 <div class="collapse navbar-collapse" id="myNavbar">
+                    <!-- menú izquierdo-->
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
+                        <li class="active"><a href="#">Lista de productos</a></li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1
                                 <span class="caret"></span></a>
@@ -68,16 +49,168 @@
                         </li>
                         <li><a href="#">Page 2</a></li>
                     </ul>
+                    <!-- menú derecho -->
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Registrarse</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Ingresar</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <main>
-
+    <!-- carrusel -->
+    <div class="container-fluid" style="padding: 0;">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+            </ol>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="./img/b.jpg" alt="setup1">
+                    <div class="carousel-caption">
+                        <h3>Monitores</h3>
+                        <p>y accesorios</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="./img/a.jpg" alt="setup2">
+                    <div class="carousel-caption">
+                        <h3>Comodidad</h3>
+                        <p>y confiabilidad</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="./img/c.jpg" alt="setup3">
+                    <div class="carousel-caption">
+                        <h3>Al mejor precio</h3>
+                        <p>ofertas todos los dias</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="./img/d.jpg" alt="setup4">
+                    <div class="carousel-caption">
+                        <h3>Bienvenido</h3>
+                        <p>a una tienda como tú</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <!-- panel de texto o contenido -->
+    <main class="container">
+        <h3>Lista de articulos</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis earum accusamus ratione aut, excepturi
+            ex ipsam atque adipisci minus fugiat laudantium magni rem sed optio quaerat autem. Nam, mollitia eos?
+            Saepe est inventore, quaerat non ad autem aspernatur voluptatem, aperiam quasi fugiat perferendis commodi
+            delectus doloremque neque quia accusantium expedita eligendi voluptas aliquam cum dignissimos dolores nemo
+            distinctio. Reiciendis, architecto!
+            Possimus id sunt iste et, nesciunt architecto vel dignissimos. Dolores, rem molestiae sequi vel magni
+            numquam pariatur reiciendis ullam quae quas itaque ipsam. Voluptatem aspernatur laborum modi accusantium
+            illo sunt?
+            Accusantium assumenda, sequi inventore quaerat voluptatibus fugiat totam amet deserunt nulla nisi fuga
+            ratione deleniti, explicabo id dolore eius iste architecto sed vero at eum, officia sapiente. Ut, explicabo
+            cum.
+            Fugit, unde accusantium esse quam assumenda nam nisi inventore eligendi aut consectetur libero rerum
+            corporis odio blanditiis minus dolorum culpa pariatur, cum veniam? Eligendi quae maiores perferendis
+            voluptatibus molestias amet.
+            Voluptate fuga non dolor voluptatum minima, beatae ab, esse ex eius quos doloribus corporis nesciunt amet
+            eaque aspernatur placeat ipsam cumque sint? Rem reiciendis impedit corporis iusto blanditiis, numquam
+            consequatur.
+            Eos aliquam nam impedit numquam libero nesciunt ducimus harum assumenda blanditiis, qui ab placeat voluptas
+            repellendus. Odio, tenetur. Doloremque iure harum doloribus? Repudiandae consequatur temporibus aut aperiam
+            consectetur natus omnis?
+            Non ipsum pariatur vero laborum iusto quaerat similique necessitatibus inventore deleniti? Atque esse
+            architecto magnam sapiente enim quaerat eum, illo suscipit saepe qui? Eligendi officiis facilis, dolor fugit
+            ex iusto.
+            Odio qui quaerat a atque vel repellendus. Officiis, ipsum! Possimus fugit autem eaque, et magnam voluptate,
+            nostrum exercitationem vero iste ipsam fuga incidunt praesentium! Explicabo neque porro temporibus officiis
+            repellat?
+            Dolores quo commodi necessitatibus dolor distinctio labore eaque laboriosam laudantium incidunt culpa.
+            Fugiat doloremque eos odio unde libero quasi id commodi voluptate voluptatem vero sapiente doloribus, totam
+            impedit quod atque?
+            Unde necessitatibus voluptatem laboriosam perferendis quibusdam assumenda, iure voluptates voluptate
+            adipisci molestiae enim porro suscipit quas quidem dolore tempora nulla, expedita veritatis explicabo.
+            Dolorum ex facilis voluptates dolore aspernatur temporibus.
+            Est illum molestias fuga asperiores dicta laboriosam dignissimos illo, ab officia accusamus optio quod
+            inventore, natus veniam expedita maiores? Voluptatibus quos explicabo ipsam, minus consequuntur quod
+            laboriosam consequatur magnam aliquid.
+            Commodi laborum neque odio fugiat exercitationem sint quae et tempore omnis atque, esse quo quam excepturi
+            qui sapiente ratione iusto quaerat temporibus? Ducimus obcaecati fugiat reprehenderit itaque similique
+            deserunt dolorum.
+            Laboriosam, officiis in doloribus porro a eos maxime exercitationem adipisci eum cupiditate voluptatum ipsam
+            rerum aperiam ducimus accusamus error rem! Distinctio neque ut ex illo? Cumque omnis sit accusantium vel?
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis a magnam nisi officiis, aut maxime vitae
+            assumenda nam eum voluptatem incidunt molestiae similique non provident sit aliquam, delectus voluptatum
+            nemo.
+            Ea ipsa similique praesentium dolorem laboriosam! Necessitatibus, et eligendi maxime facere vel autem
+            temporibus voluptatem commodi fuga quae quasi nisi distinctio eum voluptate quod eos nobis, soluta quidem
+            perspiciatis blanditiis!
+            Corporis eius perferendis impedit rerum tenetur harum eos voluptate inventore recusandae vel officiis
+            adipisci quo nisi eligendi animi explicabo et ea mollitia distinctio, dignissimos dolore tempore quae
+            reiciendis vitae! Porro?
+            Odio deleniti corporis aperiam eveniet vel laboriosam nam ipsa pariatur maiores, accusantium distinctio
+            incidunt quisquam nihil adipisci qui optio, quod vero quos exercitationem? Neque, incidunt? Voluptas ut
+            explicabo ea modi!
+            Sed accusamus impedit deleniti tempora reiciendis, incidunt facere dignissimos eligendi itaque vel neque
+            tenetur, hic laudantium debitis! Sequi incidunt et ipsa veritatis alias dignissimos quae, eum vel quod illum
+            vero.
+            Reprehenderit praesentium maxime provident vero, cum asperiores consectetur quos voluptatum debitis
+            veritatis deleniti repellat exercitationem aut sequi perspiciatis saepe, modi aliquam culpa consequuntur
+            nemo nisi animi! Ipsa blanditiis consequatur recusandae?
+            Nemo sapiente debitis quas, eius sed alias minima! Error, possimus vero! Autem tempore eos dolorum molestiae
+            sequi minus, blanditiis odit cumque accusamus, reiciendis quam ducimus, eveniet illum fugit placeat vero?
+            Voluptatibus saepe temporibus nesciunt maiores perspiciatis vel ratione voluptatem harum tempora? Magnam
+            iure laudantium corporis est libero ratione, cupiditate cumque et unde adipisci minima omnis aperiam, animi
+            excepturi quia laboriosam.
+            Consequuntur fugit iusto quo corrupti, sunt, illo error, quod voluptatum ipsam eius earum alias ullam ex
+            molestiae rerum porro provident! Facere debitis vero recusandae incidunt ipsam laborum. Optio, fugiat aut.
+            Architecto officia maiores ut accusantium impedit sequi ipsum voluptatum et, dolorem animi possimus eveniet
+            alias ipsa neque laboriosam! Delectus fuga tenetur ad magnam corporis, dolorem voluptatem minima reiciendis
+            laudantium. Maxime.
+            Nobis, ullam est? Maxime impedit magnam rerum nisi nihil! Cum, ipsa voluptas dolore numquam temporibus
+            voluptatum iste exercitationem quo earum iusto quasi iure corporis accusamus, accusantium nostrum
+            dignissimos nulla laboriosam?
+            Autem quisquam magnam dolores! Sunt nisi atque corporis nulla inventore ratione ducimus numquam enim
+            quisquam hic aut fuga iste incidunt, quos, voluptas tenetur porro nostrum doloremque dignissimos quidem
+            magni esse.
+            Deleniti, officia quia. Aliquam, distinctio consequuntur eum reiciendis delectus animi sint unde nisi,
+            ducimus magni fugiat cumque quibusdam quia recusandae deserunt enim beatae architecto est magnam hic
+            asperiores doloribus maiores?
+            Distinctio ea quod autem accusantium est a, consequatur temporibus, et nisi quam obcaecati soluta ad.
+            Delectus corrupti quis, aut labore architecto ipsa cupiditate in iusto recusandae debitis quaerat voluptatem
+            aspernatur.
+            Libero numquam eaque corrupti consequuntur sapiente ab corporis magni quisquam vel fugit quos qui fugiat,
+            optio eveniet incidunt, nulla aut hic itaque. Sapiente, totam harum! Magni ut esse odio nesciunt?
+            Culpa, minima necessitatibus repellat alias nesciunt labore deleniti! Unde aliquam tempore atque corporis
+            iusto voluptas veniam soluta provident vitae libero laborum ipsum aperiam error animi a quaerat, nam eveniet
+            asperiores?
+            Magnam nam repudiandae saepe omnis magni quia nesciunt provident! Delectus unde vitae aspernatur est laborum
+            sequi ipsam alias. Iusto facere quis expedita illum exercitationem sunt voluptatem. Non voluptatum nisi
+            nostrum!
+            Consequuntur vero molestias natus maiores nisi officia velit repellat provident cum architecto officiis
+            recusandae quaerat voluptatibus laudantium accusamus voluptate harum, deleniti ab omnis aut voluptatem,
+            voluptas magni expedita. Est, temporibus?
+            Consequatur deleniti molestiae nobis labore excepturi perspiciatis soluta laboriosam molestias sequi ipsam
+            aliquid exercitationem blanditiis iure consectetur sed, doloribus deserunt dolorum temporibus assumenda?
+            Obcaecati quo vero quia soluta repellendus animi.
+            Doloremque enim aliquam repellat sapiente necessitatibus quod ipsa, sint blanditiis natus? Sit nostrum
+            doloremque, provident amet explicabo eveniet laborum veniam in odio at ab inventore? Rerum voluptates
+            repudiandae reprehenderit necessitatibus!
+        </p>
     </main>
 </body>
 

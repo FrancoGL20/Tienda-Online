@@ -1,6 +1,6 @@
 # Tienda-Online
     El proyecto consta de la creación de una página de una tienda online para Desarrollo Web.
-### Estructura de la DB:
+## Estructura de la DB:
 * Usuario:
     1. id_usuario **PK**
     2. nombre_usuario
@@ -26,4 +26,16 @@
     2. id_usuario FK
     3. id_producto FK
     4. fecha_y_hora_compra
-### Funcionamiento de la página
+## Estructura de las páginas
+* main 
+  * muestra los productos existentes
+  * aunque no se inicie sesión
+    * verificar el caso en el que se inicia sesión
+* inicio de sesión
+  * permite registrar un usuario (sin permisos especiales)
+* página del administrador
+  * en el main debe aparecer un boton que diga administrar productos
+* información del usuario
+  * todos los datos del mismo
+* carrito de compras del usuario
+  * info acerca del sitio
