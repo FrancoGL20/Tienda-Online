@@ -1,11 +1,67 @@
-*{
+* {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
-body { padding-top: 6.9vh; } 
-main{
+
+body {
+    padding-top: 6.9vh;
+}
+
+main {
     /* margin-top: 70px; */
-    background-color: #0a0a0a ;
+    /* background-color: #0a0a0a ;
+    color: white; */
+}
+
+.card {
+    width: 18rem;
+    border: solid 1px;
+    padding: 1%;
+    border-radius: .5em;
+    margin-bottom: 1.5rem;
+}
+
+.card-img-top {
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+}
+
+hr.solid {
+    border-top: 1px solid #bbb;
+    margin: 0px 0 5px 0;
+}
+.comprar{
+    background-color: #272727;
     color: white;
+}
+.principal{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 70vw;
+    margin: 0 auto;
+
+    align-content: flex-start;
+}
+
+/* REVISAR BIEN Y VERIFICAR TODO ESTO DE NUEVO */
+@media(max-width: 1024px){
+    .principal{
+        width: 90%;
+    }
+}
+@media(max-width: 837px){
+    .principal{
+        width: 95%;
+    }
+}
+@media(max-width: 650px){
+    .principal{
+        width: 95%;
+        justify-content: space-around;
+    }
 }
