@@ -39,3 +39,9 @@
   * todos los datos del mismo
 * carrito de compras del usuario
   * info acerca del sitio
+## Categorias de productos
+* monitores
+* teclados
+* accesorios
+* ordenadores
+* gamer
