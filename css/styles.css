@@ -5,7 +5,7 @@
 }
 
 body {
-    padding-top: 6.9vh;
+    padding-top: 5vh;
 }
 
 main {
@@ -34,11 +34,18 @@ hr.solid {
     border-top: 1px solid #bbb;
     margin: 0px 0 5px 0;
 }
-.comprar{
+
+a.comprar {
     background-color: #272727;
     color: white;
 }
-.principal{
+
+a.comprar:hover {
+    background-color: #bbb;
+    color: black;
+}
+
+.principal {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -48,19 +55,39 @@ hr.solid {
     align-content: flex-start;
 }
 
+#altura_caja{
+    height: 11rem;
+}
+
+/*                footer                   */
+
+.footer {
+    height: 5rem;
+    background-color: #272727;
+    text-align: center;
+
+}
+
+.fa {
+    margin: 1rem;
+    color: white;
+}
+
 /* REVISAR BIEN Y VERIFICAR TODO ESTO DE NUEVO */
-@media(max-width: 1024px){
-    .principal{
+@media(max-width: 1024px) {
+    .principal {
         width: 90%;
     }
 }
-@media(max-width: 837px){
-    .principal{
+
+@media(max-width: 837px) {
+    .principal {
         width: 95%;
     }
 }
-@media(max-width: 650px){
-    .principal{
+
+@media(max-width: 650px) {
+    .principal {
         width: 95%;
         justify-content: space-around;
     }
