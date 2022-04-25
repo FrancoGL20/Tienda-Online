@@ -2,24 +2,18 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php
+    include("./php/head_html.php");
+    ?>
+    <!-- icono -->
+    <link rel="shortcut icon" href="./img/logo.jpg">
     <title>Página de inicio</title>
     <!-- normalize -->
-    <link rel="preload" href="css/normalize.css" as="style">
-    <link rel="stylesheet" href="css/normalize.css">
-    <!-- bootstrap 3 -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <!-- icono a un lado del titulo de la página en la pestaña -->
-    <link rel="shortcut icon" href="./img/logo.jpg">
-    <!-- iconos de redes sociales -->
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="preload" href="./css/normalize.css" as="style">
+    <link rel="stylesheet" href="./css/normalize.css">
     <!-- estilos -->
-    <link rel="preload" href="css/styles.css" as="style">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preload" href="./css/styles.css" as="style">
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
@@ -56,10 +50,14 @@
                     </ul>
                     <!-- menú derecho -->
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="./php/registro.php"><span class="glyphicon glyphicon-user"></span>Registrarse</a>
+                        <li>
+                            <a href="./php/registro.php"><span class="glyphicon glyphicon-user"></span>Registrarse
+                            </a>
                         </li>
-                        <li><a href="./php/iniciar_sesion.php"><span class="glyphicon glyphicon-log-in"></span>
-                                Ingresar</a></li>
+                        <li>
+                            <a href="./php/iniciar_sesion.php"><span class="glyphicon glyphicon-log-in">
+                                </span>Ingresar</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -119,44 +117,46 @@
         </div>
     </div>
 
-    <!-- panel de texto o contenido -->
+    <!-- panel del titulo -->
     <h3 class="container text-center" style="margin-bottom: .5em; margin-top: .5em;">Lista de articulos</h3>
+
     <!-- lista de productos -->
     <main class="principal">
         <!-- lista de productos automatica -->
         <?php
             // Crear una conexión
-            $con = mysqli_connect("localhost","root","","tienda_online");
+            $con = mysqli_connect("localhost", "root", "", "tienda_online");
 
             // Check connection
             if (mysqli_connect_errno()) {
-                echo "Failed to connect to MySQL: ".mysqli_connect_error();
-            }else{
-                $result = mysqli_query($con,"SELECT * FROM producto;");
+                echo "Failed to connect to MySQL: " . mysqli_connect_error();
+            } else {
+                $result = mysqli_query($con, "SELECT * FROM producto;");
                 //mio
-                while($row = mysqli_fetch_array($result)) {
-                    echo "
-                    <div class=\"card text-center\">
-                    <img class=\"card-img-top\" src=\"./img/productos/".$row['id_producto'].".png\" alt=\"Card image cap\">
-                    <div class=\"card-body\">
-                        <hr class=\"solid\">
-                        <div id=\"altura_caja\"><p class=\"card-text\">
-                            ".$row['nombre_producto']."
-                        </p></div>
-                        <hr class=\"solid\">
-                        <p class=\"card-text\">
-                            ".$row['precio_producto']."
-                        </p>
-                    </div>
-                    <a href=\"#\" class=\"btn btn-sm comprar\">Comprar</a>
-                    </div>";
+                while ($row = mysqli_fetch_array($result)) {
+                    echo "<div class=\"card text-center\">
+                        <img class=\"card-img-top\" src=\"./img/productos/" . $row['id_producto'] . ".png\" alt=\"Card image cap\">
+                        <div class=\"card-body\">
+                            <hr class=\"solid\">
+                            
+                            <div id=\"altura_caja\"><p class=\"card-text\">
+                                " . $row['nombre_producto'] . "
+                            </p></div>
+
+                            <hr class=\"solid\">
+                            <p class=\"card-text\">$
+                                " . number_format(floatval($row['precio_producto']), 2, '.', ',') . "
+                            </p>
+                        </div>
+                        <a href=\"#\" class=\"btn btn-sm comprar\">Comprar</a>
+                        </div>";
                 }
                 // cerrar conexión
                 mysqli_close($con);
             }
         ?>
-        
     </main>
+
     <!-- footer -->
     <div class="footer">
         <div class="container-fluid centrar_footer">
