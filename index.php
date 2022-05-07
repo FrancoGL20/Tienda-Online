@@ -58,7 +58,6 @@ session_start();
                                 echo "super: " . $_SESSION['sesion_personal']['super'] ;
                             }else{
                                 echo "debes iniciar sesion";
-                                echo $_SESSION[];
                             }
                             ?>
                         </a></li>
