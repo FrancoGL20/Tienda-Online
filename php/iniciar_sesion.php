@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -65,22 +68,27 @@
     </header>
     <!-- ingreso de datos -->
 
+    <!-- validacion -->
+    <?php
+    include "./valida_inicio_sesion.php";
+    ?>
+    <!-- formulario -->
     <div class="centrar">
         <h1 style="text-align:center; margin:0">Iniciar sesión</h1>
-        <form class="form form-horizontal">
+        <form class="form form-horizontal" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <div class="form-group">
-                <label for="correo" class="control-label">Correo</label>
+                <label for="nombre" class="control-label">Nombre de usuario: <span class="error"><?php echo $nombreErr?></span></label>
                 <div class="input-group">
                     <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                     </div>
-                    <input type="email" class="form-control" id="correo" placeholder="contacto@dominio.com">
+                    <input type="text" name="nombre" class="form-control" autocomplete="username" value="<?php echo $nombre?>">
                 </div>
             </div>
             <div class="form-group">
-                <label for="contrasena" class="control-label">Contraseña</label>
+                <label for="contrasena" class="control-label">Contraseña <span class="error"><?php echo $contraErr?></span></label>
                 <div class="input-group">
                     <div class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></div>
-                    <input type="password" class="form-control" id="contrasena" placeholder="Password">
+                <input type="password" class="form-control" name="contrasena" placeholder="Password" autocomplete="password" value="<?php echo $contra?>">
                 </div>
             </div>
             <p class="no-registrado">¿No tienes cuenta? <a class="btn-link" href="./registro.php">Registrarse</a></p>

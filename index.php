@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -45,7 +48,20 @@
                                 <li><a href="#">Page 1-3</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">Page 2</a></li>
+                        <li><a href="#">
+                            <?php
+                            $id=session_status();
+                            if (isset($_SESSION['sesion_personal'])) {
+                                echo "nombre: " . $_SESSION['sesion_personal']['nombre'] . "," . session_status();
+                                echo "sesion: " . session_status();
+                                echo "id: " . $_SESSION['sesion_personal']['id'] ;
+                                echo "super: " . $_SESSION['sesion_personal']['super'] ;
+                            }else{
+                                echo "debes iniciar sesion";
+                                echo $_SESSION[];
+                            }
+                            ?>
+                        </a></li>
                         <li><a href="./pruebas/pruebas.php">Pruebas</a></li>
                     </ul>
                     <!-- menú derecho -->
