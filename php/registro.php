@@ -15,6 +15,8 @@ session_start();
     <link rel="preload" href="./../css/normalize.css" as="style">
     <link rel="stylesheet" href="./../css/normalize.css">
     <!-- estilos -->
+    <link rel="preload" href="./../css/estilo_generico.css" as="style">
+    <link rel="stylesheet" href="./../css/estilo_generico.css">
     <link rel="preload" href="./../css/styles-iniciosesion-registro.css" as="style">
     <link rel="stylesheet" href="./../css/styles-iniciosesion-registro.css">
 </head>
@@ -39,17 +41,6 @@ session_start();
                     <!-- menú izquierdo-->
                     <ul class="nav navbar-nav">
                         <li><a href="./../index.php">Lista de productos</a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1
-                                <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Page 1-1</a></li>
-                                <li><a href="#">Page 1-2</a></li>
-                                <li><a href="#">Page 1-3</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Page 2</a></li>
-                        <li><a href="./pruebas/pruebas.php">Pruebas</a></li>
                     </ul>
                     <!-- menú derecho -->
                     <ul class="nav navbar-nav navbar-right">
@@ -76,14 +67,14 @@ session_start();
     <div class="centrar">
         <h3 style="text-align:center; margin:0">Registro de nuevo usuario</h3>
         <!-- form -->
-        <form class="form form-horizontal" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+        <form class="form form-horizontal" method="POST" action="<?= htmlspecialchars($_SERVER["PHP_SELF"])?>">
             <!-- preguntas inicio -->
             <div class="form-group">
                 <label for="nombre" class="control-label">Nombre de usuario: <span class="error"><?php echo $nombreErr?></span></label>
                 <div class="input-group">
                     <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                     </div>
-                    <input type="text" name="nombre" class="form-control" autocomplete="username" value="<?php echo $nombre?>">
+                    <input type="text" name="nombre" class="form-control" value="<?php echo $nombre?>">
                 </div>
             </div>
             <div class="form-group">
@@ -91,14 +82,14 @@ session_start();
                 <div class="input-group">
                     <div class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
                     </div>
-                    <input type="password" name="contrasena" class="form-control" autocomplete="password" value="<?php echo $contra?>">
+                    <input type="password" name="contrasena" class="form-control" value="<?php echo $contra?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="fnac" class="control-label">Fecha de nacimiento: <span class="error"><?php echo $fechanacimientoErr?></span></label>
                 <div class="input-group">
                     <div class="input-group-addon"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></div>
-                    <input type="date" name="fnac" class="form-control" value="<?php echo $fechanacimiento?>" autocomplete="fechanac" max="2004-05-03">
+                    <input type="date" name="fnac" class="form-control" value="<?php echo $fechanacimiento?>" max="2004-05-03">
                 </div>
             </div>
             <div class="form-group">

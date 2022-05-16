@@ -1,14 +1,3 @@
-:root{
-    --negro:#1f1f1f;
-    --blanco: rgb(230, 230, 230);
-}
-
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-}
-
 html{
     width: 100%;
     height: 100%;

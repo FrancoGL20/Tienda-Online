@@ -15,6 +15,8 @@ session_start();
     <link rel="preload" href="./../css/normalize.css" as="style">
     <link rel="stylesheet" href="./../css/normalize.css">
     <!-- estilos -->
+    <link rel="preload" href="./../css/estilo_generico.css" as="style">
+    <link rel="stylesheet" href="./../css/estilo_generico.css">
     <link rel="preload" href="./../css/styles-iniciosesion-registro.css" as="style">
     <link rel="stylesheet" href="./../css/styles-iniciosesion-registro.css">
 </head>
@@ -39,17 +41,6 @@ session_start();
                     <!-- menú izquierdo-->
                     <ul class="nav navbar-nav">
                         <li><a href="./../index.php">Lista de productos</a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1
-                                <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Page 1-1</a></li>
-                                <li><a href="#">Page 1-2</a></li>
-                                <li><a href="#">Page 1-3</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Page 2</a></li>
-                        <li><a href="./pruebas/pruebas.php">Pruebas</a></li>
                     </ul>
                     <!-- menú derecho -->
                     <ul class="nav navbar-nav navbar-right">
@@ -81,7 +72,7 @@ session_start();
                 <div class="input-group">
                     <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                     </div>
-                    <input type="text" name="nombre" class="form-control" autocomplete="username" value="<?php echo $nombre?>">
+                    <input type="text" name="nombre" class="form-control" autocomplete="username" value="<?= $nombre?>">
                 </div>
             </div>
             <div class="form-group">
