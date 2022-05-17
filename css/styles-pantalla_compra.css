@@ -9,10 +9,6 @@ html{
     padding-bottom: 2rem;
 }
 
-.container > *{
-    font-size: larger;
-}
-
 @media (max-width:1146px) {
 
     /* Menu BreakPoint */

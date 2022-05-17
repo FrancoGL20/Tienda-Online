@@ -30,6 +30,7 @@ else:
     mysqli_close($con);
 endif;
 $suma=0;
+$arreglo_para_comprar=array();
 ?>
 
 <!DOCTYPE html>
@@ -47,6 +48,8 @@ $suma=0;
     <link rel="preload" href="../css/styles-carrito.css" as="style">
     <link rel="stylesheet" href="../css/estilo_generico.css">
     <link rel="stylesheet" href="../css/styles-carrito.css">
+    <!-- JS -->
+    <script type="text/javascript" src="../js/comprar_agregarcarrito.js"></script>
 </head>
 
 <body class="container">
@@ -108,56 +111,64 @@ $suma=0;
             <th>Precio</th>
             <th>Total individual</th>
         </tr>
-    <?php foreach ($arreglo_de_productos as $producto): ?>
-        <tr>
-            <td>
-                <img src="../img/productos/<?= $producto["id"] ?>.png" alt="producto <?= $producto["nombre"] ?>" class="imagen">
-            </td>
-            <td>
-                <span class="texto-informativo"><?= $producto["nombre"] ?></span>
-            </td>
-            <td>
-                <span class="texto-informativo"><?= $producto["disponibles"] ?></span>
-            </td>
-            <td>
-                <div class="btn-group">
-                    <a href="modificar_producto_carrito.php?signo=0&id_carrito=
-                        <?=$producto['id_carrito']?>&disp=<?=$producto["disponibles"]?>&cant=
-                        <?=$producto["cantidad"]?>" class="btn btn-default">-
-                    </a>
-                    
-                    <button type="submit" class="btn btn-default disabled"><?= $producto["cantidad"] ?></button>
+        
+        <?php foreach ($arreglo_de_productos as $producto): 
+            // [0]=
+            array_push($arreglo_para_comprar,($producto["cantidad"].",".$producto["id"].""));
+            ?>
+            <tr>
+                <td>
+                    <img src="../img/productos/<?= $producto["id"] ?>.png" alt="producto <?= $producto["nombre"] ?>" class="imagen">
+                </td>
+                <td>
+                    <span class="texto-informativo"><?= $producto["nombre"] ?></span>
+                </td>
+                <td>
+                    <span class="texto-informativo"><?= $producto["disponibles"] ?></span>
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <a href="modificar_producto_carrito.php?signo=0&id_carrito=
+                            <?=$producto['id_carrito']?>&disp=<?=$producto["disponibles"]?>&cant=
+                            <?=$producto["cantidad"]?>" class="btn btn-default">-
+                        </a>
+                        
+                        <button type="submit" class="btn btn-default disabled"><?= $producto["cantidad"] ?></button>
 
-                    <a href="modificar_producto_carrito.php?signo=1&
-                        id_carrito=<?=$producto['id_carrito']?>&disp=<?=$producto["disponibles"]?>
-                        &cant=<?=$producto["cantidad"]?>" class="btn btn-default">
-                        +
-                    </a>
-                </div>
-            </td>
-            <td>
-                <span class="texto-informativo">$<?= number_format(floatval($producto["precio"]), 2, '.', ',') ?></span>
-            </td>
-            <td>
-                <span class="texto-informativo">
-                    $<?= number_format(floatval(floatval($producto["precio"])*((int) $producto["cantidad"])), 2, '.', ',') ?>
-                </span>
-            </td>
+                        <a href="modificar_producto_carrito.php?signo=1&
+                            id_carrito=<?=$producto['id_carrito']?>&disp=<?=$producto["disponibles"]?>
+                            &cant=<?=$producto["cantidad"]?>" class="btn btn-default">
+                            +
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    <span class="texto-informativo">$<?= number_format(floatval($producto["precio"]), 2, '.', ',') ?></span>
+                </td>
+                <td>
+                    <span class="texto-informativo">
+                        $<?= number_format(floatval(floatval($producto["precio"])*((int) $producto["cantidad"])), 2, '.', ',') ?>
+                    </span>
+                </td>
+            </tr>
+            <?php $suma+=floatval(floatval($producto["precio"])*((int) $producto["cantidad"])); ?>
+        <?php endforeach; ?>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <th>Total</th>
+            <td>$<?= number_format(floatval(floatval($suma)), 2, '.', ',') ?></td>
         </tr>
-        <?php $suma+=floatval(floatval($producto["precio"])*((int) $producto["cantidad"])); ?>
-    <?php endforeach; ?>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <th>Total</th>
-        <td>$<?= number_format(floatval(floatval($suma)), 2, '.', ',') ?></td>
-    </tr>
-    </table></div>
+        </table>
+    </div>
+    <script>
+        var arreglo_de_productos=JSON.parse('<?= json_encode($arreglo_para_comprar); ?>');
+    </script>
     <div class="posiciona-botones">
             <a href="vaciar_carrito.php"><input type="submit" class="btn btn-default boton" value="Vaciar carrito"></a>
-            <input type="submit" class="btn btn-default boton" value="Comprar todo">
+            <input type="submit" class="btn btn-default boton" value="Comprar todo" onclick="enviarAPantallaDeCompraMuchos(arreglo_de_productos)">
     </div>
 <?php endif ?>
 </body>

@@ -4,10 +4,12 @@ if (!isset($_SESSION['sesion_personal'])) {
     header("Location: ./iniciar_sesion.php");
 }
 $id_usuario=$_SESSION['sesion_personal']['id'];
-
-
-$cantidad=$_GET['cantidad'];
-$id_producto=$_GET['id_producto'];
+$vaciar_carrito=$_GET['v'];
+$arreglo=array(); // arreglo de productos con sus cantidad y id pe [0]=1, 2
+foreach ($_GET['datos'] as $value) {
+    $subarreglo=explode(",",$value);
+    array_push($arreglo,$subarreglo);
+}
 
 $con = mysqli_connect("localhost", "root", "", "tienda_online");
 if (mysqli_connect_errno()) :
@@ -22,15 +24,24 @@ else:
             "direccion"=>$row['direccion']
         ));
     endwhile;
-    /// AQUI
+
+    // recorrer el arreglo de productos para hacer un arreglo de productos mas detallado
     $producto=[];
-    $result = mysqli_query($con, "SELECT * FROM producto WHERE id_producto=".$id_producto.";");
-    while ($row = mysqli_fetch_array($result)):
-        array_push($producto, array(
-            "nombre"=>$row['nombre_producto'],
-            "precio"=>$row['precio_producto'],
-        ));
-    endwhile;
+    foreach ($arreglo as $indice => $valor) {
+        $cantidad=$valor[0];  //  el primer [0] es el primero producto
+        $id_producto=$valor[1];
+        /// AQUI
+        $result = mysqli_query($con, "SELECT * FROM producto WHERE id_producto=".$id_producto.";");
+        while ($row = mysqli_fetch_array($result)) {
+            array_push($producto, array(
+                "nombre"=>$row['nombre_producto'],
+                "precio"=>$row['precio_producto'],
+                "cantidad"=>$cantidad,
+                "id_producto"=>$id_producto
+            ));
+        }
+    }
+    
     mysqli_close($con);
 endif;
 ?>
@@ -105,13 +116,19 @@ endif;
     <p>&nbsp &nbsp &nbsp <b>Dirección:</b> <?= $usuario[0]['direccion'];?></p>
     <p>&nbsp &nbsp &nbsp <b>Número de tarjeta:</b> <?= $usuario[0]['n_tarjeta'];?></p>
     <p>&nbsp &nbsp &nbsp <b>Correo:</b> <?= $usuario[0]['correo'];?></p>
-    <h4>Confirmación de compra</h4>
-    <!-- precio,cantidad, total, confirmar -->
-    <p>&nbsp &nbsp &nbsp <b>Nombre:</b> <?= $producto[0]['nombre'];?></p>
-    <p>&nbsp &nbsp &nbsp <b>Precio:</b> $<?= number_format(floatval($producto[0]['precio']), 2, '.', ',')?></p>
-    <p>&nbsp &nbsp &nbsp <b>Cantidad:</b> <?= $cantidad;?></p>
-    <p>&nbsp &nbsp &nbsp <b>Total:</b> $<?= number_format(floatval($cantidad*floatval($producto[0]['precio'])), 2, '.', ',');?></p>
-    <input type="submit" value="Confirmar compra" class="btn btn-default" onclick="comprar(<?=$cantidad;?>,<?=$id_producto;?>)">
-    <input type="submit" value="Cancelar compra" class="btn btn-default" onclick="history.back()">
+
+    <h4>Confirmación de compra</h4> <!-- datos de los productos  NUEVO-->
+    <?php foreach ($producto as $value) :?>
+        <p>&nbsp &nbsp &nbsp <b>Nombre:</b> <?= $value['nombre'];?></p>
+        <p>&nbsp &nbsp &nbsp <b>Precio:</b> $<?= number_format(floatval($value['precio']), 2, '.', ',')?></p>
+        <p>&nbsp &nbsp &nbsp <b>Cantidad:</b> <?= $value['cantidad'];?></p>
+        <p>&nbsp &nbsp &nbsp <b>Total:</b> $<?= number_format(floatval($value['cantidad']*floatval($value['precio'])), 2, '.', ',');?></p>--<br>
+    <?php endforeach; ?>
+
+    <script>
+        var arreglo_de_productos=JSON.parse('<?= json_encode($arreglo); ?>');
+    </script>
+    <input type="submit" value="Confirmar compra" class="btn btn-default" onclick="comprar(arreglo_de_productos,<?=(int) $vaciar_carrito?>)">
+    <input type="submit" value="Cancelar compra" class="btn btn-default" onclick="window.location.replace('../index.php')">
 </body>
 </html>
