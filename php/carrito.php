@@ -35,6 +35,7 @@ $arreglo_para_comprar=array();
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <?php include "head_html.php" ?>
     <title>Carrito de compras</title>
@@ -80,8 +81,15 @@ $arreglo_para_comprar=array();
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <?php if ($_SESSION['sesion_personal']['super']==1): ?>
-                        <li>
-                            <a href="../php/super_usuario.php"><span class="glyphicon glyphicon-cog"></span> Modo dios 😎</a>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                aria-haspopup="true" aria-expanded="false">Modo dios 😎 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="../php/consultar_historial.php"><span
+                                            class="glyphicon glyphicon-list"></span> Consultar historial</a></li>
+                                <li><a href="../php/modificar_productos.php"><span
+                                            class="glyphicon glyphicon-cog"></span> Modificar productos</a></li>
+                            </ul>
                         </li>
                         <?php endif; ?>
                         <li>
@@ -98,27 +106,29 @@ $arreglo_para_comprar=array();
         </nav>
     </header>
 
-<?php if ($n_productos==0): ?>
+    <?php if ($n_productos==0): ?>
     <h1 class="h1">TU CARRITO ESTA VACIO</h1>
-<?php else: ?>
+    <?php else: ?>
     <h1 class="h1">CARRITO DE COMPRAS</h1>
-    <div class="table-responsive"><table class="table table-hover">
-        <tr>
-            <th>Imagen</th>
-            <th>Nombre</th>
-            <th>Disponibles</th>
-            <th>Cantidad seleccionada</th>
-            <th>Precio</th>
-            <th>Total individual</th>
-        </tr>
-        
-        <?php foreach ($arreglo_de_productos as $producto): 
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Disponibles</th>
+                <th>Cantidad seleccionada</th>
+                <th>Precio</th>
+                <th>Total individual</th>
+            </tr>
+
+            <?php foreach ($arreglo_de_productos as $producto): 
             // [0]=
             array_push($arreglo_para_comprar,($producto["cantidad"].",".$producto["id"].""));
             ?>
             <tr>
                 <td>
-                    <img src="../img/productos/<?= $producto["id"] ?>.png" alt="producto <?= $producto["nombre"] ?>" class="imagen">
+                    <img src="../img/productos/<?= $producto["id"] ?>.png" alt="producto <?= $producto["nombre"] ?>"
+                        class="imagen">
                 </td>
                 <td>
                     <span class="texto-informativo"><?= $producto["nombre"] ?></span>
@@ -132,7 +142,7 @@ $arreglo_para_comprar=array();
                             <?=$producto['id_carrito']?>&disp=<?=$producto["disponibles"]?>&cant=
                             <?=$producto["cantidad"]?>" class="btn btn-default">-
                         </a>
-                        
+
                         <button type="submit" class="btn btn-default disabled"><?= $producto["cantidad"] ?></button>
 
                         <a href="modificar_producto_carrito.php?signo=1&
@@ -143,7 +153,8 @@ $arreglo_para_comprar=array();
                     </div>
                 </td>
                 <td>
-                    <span class="texto-informativo">$<?= number_format(floatval($producto["precio"]), 2, '.', ',') ?></span>
+                    <span
+                        class="texto-informativo">$<?= number_format(floatval($producto["precio"]), 2, '.', ',') ?></span>
                 </td>
                 <td>
                     <span class="texto-informativo">
@@ -152,25 +163,26 @@ $arreglo_para_comprar=array();
                 </td>
             </tr>
             <?php $suma+=floatval(floatval($producto["precio"])*((int) $producto["cantidad"])); ?>
-        <?php endforeach; ?>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <th>Total</th>
-            <td>$<?= number_format(floatval(floatval($suma)), 2, '.', ',') ?></td>
-        </tr>
+            <?php endforeach; ?>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <th>Total</th>
+                <td>$<?= number_format(floatval(floatval($suma)), 2, '.', ',') ?></td>
+            </tr>
         </table>
     </div>
     <script>
-        var arreglo_de_productos=JSON.parse('<?= json_encode($arreglo_para_comprar); ?>');
+    var arreglo_de_productos = JSON.parse('<?= json_encode($arreglo_para_comprar); ?>');
     </script>
     <div class="posiciona-botones">
-            <a href="vaciar_carrito.php"><input type="submit" class="btn btn-default boton" value="Vaciar carrito"></a>
-            <input type="submit" class="btn btn-default boton" value="Comprar todo" onclick="enviarAPantallaDeCompraMuchos(arreglo_de_productos)">
+        <a href="vaciar_carrito.php"><input type="submit" class="btn btn-default boton" value="Vaciar carrito"></a>
+        <input type="submit" class="btn btn-default boton" value="Comprar todo"
+            onclick="enviarAPantallaDeCompraMuchos(arreglo_de_productos)">
     </div>
-<?php endif ?>
+    <?php endif ?>
 </body>
 
 </html>

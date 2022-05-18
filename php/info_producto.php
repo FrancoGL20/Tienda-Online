@@ -81,8 +81,15 @@ endif;
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <?php if ($_SESSION['sesion_personal']['super']==1): ?>
-                    <li>
-                        <a href="../php/super_usuario.php"><span class="glyphicon glyphicon-cog"></span>Modo dios 😎</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">Modo dios 😎 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../php/consultar_historial.php"><span class="glyphicon glyphicon-list"></span>
+                                    Consultar historial</a></li>
+                            <li><a href="../php/modificar_productos.php"><span class="glyphicon glyphicon-cog"></span>
+                                    Modificar productos</a></li>
+                        </ul>
                     </li>
                     <?php endif; ?>
                     <li>
@@ -101,7 +108,7 @@ endif;
 
 <body class="container">
     <script>
-        let id_del_producto=<?=$id_producto?>;
+    let id_del_producto = <?=$id_producto?>;
     </script>
     <div class="grande">
         <div class="imagen">
@@ -114,13 +121,15 @@ endif;
             <span><b>Seleccionar cantidad: </b>
                 <select class="form-control" id="cantidad_seleccionada">
                     <?php for ($i=1; $i <= $info_del_producto[0]["disponibles"]; $i++): ?>
-                        <option value="<?=$i?>"><?=$i?></option>
+                    <option value="<?=$i?>"><?=$i?></option>
                     <?php endfor ?>
                 </select>
             </span>
             <span>
-                <input type="button" onclick="enviarAPantallaDeCompraUno(id_del_producto)" class="btn btn-default comprar" value="Comprar" >
-                <input type="button" onclick="agregarAlCarrito(id_del_producto)" class="btn btn-default comprar" value="Agregar al carrito">
+                <input type="button" onclick="enviarAPantallaDeCompraUno(id_del_producto)"
+                    class="btn btn-default comprar" value="Comprar">
+                <input type="button" onclick="agregarAlCarrito(id_del_producto)" class="btn btn-default comprar"
+                    value="Agregar al carrito">
             </span>
         </div>
     </div>

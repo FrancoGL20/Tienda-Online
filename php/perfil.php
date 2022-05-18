@@ -33,6 +33,7 @@ endif;
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <title>Historial de compra</title>
     <!-- icono -->
@@ -67,15 +68,22 @@ endif;
                     <li><a href="../index.php">Lista de productos</a></li>
                     <li class="navbar-text active">
                         <a href="#" class="navbar-link">
-                            Sesión iniciada como 
+                            Sesión iniciada como
                             <u><?=$_SESSION['sesion_personal']['nombre']?></u>
                         </a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <?php if ($_SESSION['sesion_personal']['super']==1): ?>
-                    <li>
-                        <a href="../php/super_usuario.php"><span class="glyphicon glyphicon-cog"></span> Modo dios 😎</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">Modo dios 😎 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../php/consultar_historial.php"><span class="glyphicon glyphicon-list"></span>
+                                    Consultar historial</a></li>
+                            <li><a href="../php/modificar_productos.php"><span class="glyphicon glyphicon-cog"></span>
+                                    Modificar productos</a></li>
+                        </ul>
                     </li>
                     <?php endif; ?>
                     <li>
@@ -106,6 +114,8 @@ endif;
             <p><b>Contraseña:</b> <?= $usuario[0]['contrasena'];?></p>
         </section>
     </div>
-    <a href="historial_individual.php"><input type="submit" class="btn btn-default boton" value="Historial de compras "></a>
+    <a href="historial_individual.php"><input type="submit" class="btn btn-default boton"
+            value="Historial de compras "></a>
 </body>
+
 </html>

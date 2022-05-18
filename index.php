@@ -63,9 +63,14 @@ session_start();
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <?php if($_SESSION['sesion_personal']['super']==1): ?>
-                        <li>
-                            <a href="./php/super_usuario.php"><span class="glyphicon glyphicon-cog"></span> Modo dios 😎</a>
-                        </li>
+                            <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">Modo dios 😎 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="./php/consultar_historial.php"><span class="glyphicon glyphicon-list"></span> Consultar historial</a></li>
+                            <li><a href="./php/modificar_productos.php"><span class="glyphicon glyphicon-cog"></span> Modificar productos</a></li>
+                        </ul>
+                    </li>
                         <?php endif; ?>
                         <li>
                             <a href="./php/cerrar_sesion.php"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a>
@@ -134,7 +139,7 @@ session_start();
     </div>
 
     <!-- panel del titulo -->
-    <h3 class="container text-center" style="margin-bottom: .5em; margin-top: .5em;">Lista de articulos</h3>
+    <h3 class="container text-center" style="margin-bottom: .6em; margin-top: .5em;">Lista de articulos</h3>
 
     <!-- lista de productos -->
     <main class="principal">

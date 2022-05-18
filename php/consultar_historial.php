@@ -1,20 +1,27 @@
 <?php
 session_start();
-if(!isset($_SESSION['sesion_personal'])){
+if (!isset($_SESSION['sesion_personal'])) {
     header("Location: ./iniciar_sesion.php");
 }
-$id_usuario=$_SESSION['sesion_personal']['id'];
-include "head_html.php";
 
-// Crear una conexión
 $con = mysqli_connect("localhost", "root", "", "tienda_online");
-    
-// verificar connection con la BD
 if (mysqli_connect_errno()) :
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
 else:
     $historial=[];
-    $result = mysqli_query($con, "SELECT h.fecha_compra,p.id_producto,p.nombre_producto,p.precio_producto,h.cantidad_comprada FROM producto as p INNER JOIN historial_compras as h ON p.id_producto=h.id_producto WHERE h.id_usuario=".$id_usuario.";");
+    $query="SELECT
+            h.id_producto,
+            u.nombre_usuario,
+            p.nombre_producto,
+            p.precio_producto,
+            h.cantidad_comprada,
+            h.fecha_compra
+        FROM historial_compras AS h
+        JOIN usuario AS u
+            ON h.id_usuario = u.id_usuario
+        JOIN producto AS p
+            ON p.id_producto = h.id_producto;";
+    $result = mysqli_query($con, $query);
     $n_productos=mysqli_num_rows($result);
     while ($row = mysqli_fetch_array($result)):
         $precio=$row['precio_producto'];
@@ -22,6 +29,7 @@ else:
         $total=$precio*$cantidad;
         array_push($historial, array(
             "id_producto"=>$row['id_producto'],
+            "nombre_usuario"=>$row['nombre_usuario'],
             "nombre_producto"=>$row['nombre_producto'],
             "precio_producto"=>$precio,
             "cantidad_comprada"=>$cantidad,
@@ -29,7 +37,6 @@ else:
             "fecha"=>$row['fecha_compra'],
         ));
     endwhile;
-    // cerrar conexión
     mysqli_close($con);
 endif;
 
@@ -38,7 +45,8 @@ endif;
 <html lang="es">
 
 <head>
-    <title>Historial de compras</title>
+    <?php include "head_html.php";?>
+    <title>Modo dios</title>
     <!-- icono -->
     <link rel="shortcut icon" href="../img/logo.jpg">
     <!-- normalize -->
@@ -47,9 +55,10 @@ endif;
     <!-- estilos -->
     <link rel="preload" href="../css/estilo_generico.css" as="style">
     <link rel="stylesheet" href="../css/estilo_generico.css">
-    <link rel="preload" href="../css/styles-historial.css" as="style">
-    <link rel="stylesheet" href="../css/styles-historial.css">
+    <link rel="preload" href="../css/styles-consultar_historial.css" as="style">
+    <link rel="stylesheet" href="../css/styles-consultar_historial.css">
 </head>
+
 <!-- barra de navegación -->
 <header>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -69,26 +78,27 @@ endif;
                 <!-- menú izquierdo-->
                 <ul class="nav navbar-nav">
                     <li><a href="../index.php">Lista de productos</a></li>
-                    <li class="navbar-text">
-                        <a href="../php/perfil.php" class="navbar-link">
-                            Sesión iniciada como
-                            <u><?=$_SESSION['sesion_personal']['nombre']?></u>
-                        </a>
+                    <li>
+                        <span class="navbar-text">Sesión iniciada como
+                            <a href="../php/perfil.php"
+                                class="navbar-link"><u><?=$_SESSION['sesion_personal']['nombre']?></u>
+                            </a>
+                        </span>
                     </li>
-                    <li class="active"><a href="#">Historial</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <?php if ($_SESSION['sesion_personal']['super']==1): ?>
-                    <li class="dropdown">
+
+                    <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                             aria-expanded="false">Modo dios 😎 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="../php/consultar_historial.php"><span class="glyphicon glyphicon-list"></span>
-                                    Consultar historial</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-list"></span> Consultar historial</a></li>
                             <li><a href="../php/modificar_productos.php"><span class="glyphicon glyphicon-cog"></span>
                                     Modificar productos</a></li>
                         </ul>
                     </li>
+
                     <?php endif; ?>
                     <li>
                         <a href="../php/cerrar_sesion.php"><span class="glyphicon glyphicon-log-out"></span> Cerrar
@@ -108,26 +118,29 @@ endif;
     <?php if ($n_productos==0) :?>
     <h1 class="h1">NO HAY COMPRAS HECHAS AÚN</h1>
     <?php else: ?>
-    <h1>Historial de compras</h1>
+    <h1>Historial de compras general</h1>
     <div class="table-responsive">
         <table class="table table-hover">
             <tr>
-                <th>Imagen</th>
-                <th>Nombre</th>
-                <th>Fecha de compra</th>
-                <th>Precio</th>
+                <th>Imagen producto</th>
+                <th>Nombre usuario</th>
+                <th>Nombre producto</th>
+                <th>Precio producto</th>
                 <th>Cantidad comprada</th>
-                <th>Total pagado</th>
+                <th>Total</th>
+                <th>Fecha</th>
             </tr>
             <?php foreach ($historial as $producto): ?>
             <tr>
-                <td><img src="../img/productos/<?= $producto["id_producto"]; ?>.png"
-                        alt="producto <?= $producto["nombre_producto"]; ?>" class="imagen"></td>
+                <td>
+                    <img src="../img/productos/<?= $producto["id_producto"]; ?>.png" alt="producto <?= $producto["nombre_producto"]; ?>" class="imagen">
+                </td>
+                <td><?=$producto['nombre_usuario']; ?></td>
                 <td><?=$producto['nombre_producto']; ?></td>
-                <td><?=$producto['fecha'];?></td>
                 <td>$<?= number_format(floatval($producto['precio_producto'])); ?></td>
                 <td><?=$producto['cantidad_comprada']?></td>
                 <td>$<?= number_format(floatval($producto['total'])); ?></td>
+                <td><?=$producto['fecha'];?></td>
             </tr>
             <?php endforeach; ?>
         </table>

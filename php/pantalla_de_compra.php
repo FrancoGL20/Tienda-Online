@@ -48,6 +48,7 @@ endif;
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <?php include "head_html.php"?>
     <title>Pantalla de compra</title>
@@ -91,8 +92,15 @@ endif;
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <?php if ($_SESSION['sesion_personal']['super']==1): ?>
-                    <li>
-                        <a href="../php/super_usuario.php"><span class="glyphicon glyphicon-cog"></span>Modo dios 😎</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">Modo dios 😎 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../php/consultar_historial.php"><span class="glyphicon glyphicon-list"></span>
+                                    Consultar historial</a></li>
+                            <li><a href="../php/modificar_productos.php"><span class="glyphicon glyphicon-cog"></span>
+                                    Modificar productos</a></li>
+                        </ul>
                     </li>
                     <?php endif; ?>
                     <li>
@@ -119,16 +127,20 @@ endif;
 
     <h4>Confirmación de compra</h4> <!-- datos de los productos  NUEVO-->
     <?php foreach ($producto as $value) :?>
-        <p>&nbsp &nbsp &nbsp <b>Nombre:</b> <?= $value['nombre'];?></p>
-        <p>&nbsp &nbsp &nbsp <b>Precio:</b> $<?= number_format(floatval($value['precio']), 2, '.', ',')?></p>
-        <p>&nbsp &nbsp &nbsp <b>Cantidad:</b> <?= $value['cantidad'];?></p>
-        <p>&nbsp &nbsp &nbsp <b>Total:</b> $<?= number_format(floatval($value['cantidad']*floatval($value['precio'])), 2, '.', ',');?></p>--<br>
+    <p>&nbsp &nbsp &nbsp <b>Nombre:</b> <?= $value['nombre'];?></p>
+    <p>&nbsp &nbsp &nbsp <b>Precio:</b> $<?= number_format(floatval($value['precio']), 2, '.', ',')?></p>
+    <p>&nbsp &nbsp &nbsp <b>Cantidad:</b> <?= $value['cantidad'];?></p>
+    <p>&nbsp &nbsp &nbsp <b>Total:</b>
+        $<?= number_format(floatval($value['cantidad']*floatval($value['precio'])), 2, '.', ',');?></p>--<br>
     <?php endforeach; ?>
 
     <script>
-        var arreglo_de_productos=JSON.parse('<?= json_encode($arreglo); ?>');
+    var arreglo_de_productos = JSON.parse('<?= json_encode($arreglo); ?>');
     </script>
-    <input type="submit" value="Confirmar compra" class="btn btn-default" onclick="comprar(arreglo_de_productos,<?=(int) $vaciar_carrito?>)">
-    <input type="submit" value="Cancelar compra" class="btn btn-default" onclick="window.location.replace('../index.php')">
+    <input type="submit" value="Confirmar compra" class="btn btn-default"
+        onclick="comprar(arreglo_de_productos,<?=(int) $vaciar_carrito?>)">
+    <input type="submit" value="Cancelar compra" class="btn btn-default"
+        onclick="window.location.replace('../index.php')">
 </body>
+
 </html>
