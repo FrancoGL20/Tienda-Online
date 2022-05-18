@@ -200,15 +200,10 @@ session_start();
     
     <!-- footer -->
     <div class="footer">
-        <div class="container-fluid centrar_footer">
-            <a href='#'><i class="fa fa-twitch fa-2x fa-fw"></i></a>
-            <a href='#'><i class="fa fa-facebook fa-2x fa-fw"></i></a>
-            <a href='#'><i class="fa fa-twitter fa-2x fa-fw"></i></a>
-            <a href='#'><i class="fa fa-rss fa-2x fa-fw"></i></a>
-            <a href='#'><i class="fa fa-vine fa-2x fa-fw"></i></a>
-            <a href='#'><i class="fa fa-flickr fa-2x fa-fw"></i></a>
-            <a href='#'><i class="fa fa-linkedin fa-2x fa-fw"></i></a>
-        </div>
+        <a href="https://franciscogl.notion.site/Francisco-Guti-rrez-L-pez-c327c3fd856d41ea95934e1f68713d84">
+            COPYRIGHT © 2022<br>
+            DISEÑADO POR: FRANCISCO GL
+        </a>
     </div>
 </body>
 

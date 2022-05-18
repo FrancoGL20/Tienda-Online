@@ -60,17 +60,19 @@ hr.solid {
 
 /*                footer                   */
 
-.footer {
-    height: 5rem;
+div.footer {
+    height: 7rem;
     background-color: #272727;
-    text-align: center;
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
-.fa {
-    margin: 1rem;
+div.footer a{
+    font-size: smaller;
+    text-align: center;
     color: white;
 }
+
 
 
 /* REVISAR BIEN Y VERIFICAR TODO ESTO DE NUEVO */

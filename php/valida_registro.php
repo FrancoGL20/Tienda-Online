@@ -78,6 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             session_start();
             $_SESSION['sesion_personal']=array();
             $_SESSION['sesion_personal']['id']=$id;
+            $_SESSION['sesion_personal']['nombre']=$nombre;
             $_SESSION['sesion_personal']['super']=$super;
             //enviar a index
             header("Location: ../index.php");

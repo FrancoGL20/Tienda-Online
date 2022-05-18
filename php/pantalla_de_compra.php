@@ -121,26 +121,40 @@ endif;
     <h1>Pantalla de compra</h1>
     <h4>Información de facturación</h4>
     <!-- dirección, numero de tarjeta, correo -->
-    <p>&nbsp &nbsp &nbsp <b>Dirección:</b> <?= $usuario[0]['direccion'];?></p>
-    <p>&nbsp &nbsp &nbsp <b>Número de tarjeta:</b> <?= $usuario[0]['n_tarjeta'];?></p>
-    <p>&nbsp &nbsp &nbsp <b>Correo:</b> <?= $usuario[0]['correo'];?></p>
-
+    <div class="info-producto"><br>
+    <div class="centrar-texto">
+    <p><b>Dirección:</b> <?= $usuario[0]['direccion'];?></p>
+    <p><b>Número de tarjeta:</b> <?= $usuario[0]['n_tarjeta'];?></p>
+    <p><b>Correo:</b> <?= $usuario[0]['correo'];?></p>
+    </div></div>
+    <hr>
     <h4>Confirmación de compra</h4> <!-- datos de los productos  NUEVO-->
     <?php foreach ($producto as $value) :?>
-    <p>&nbsp &nbsp &nbsp <b>Nombre:</b> <?= $value['nombre'];?></p>
-    <p>&nbsp &nbsp &nbsp <b>Precio:</b> $<?= number_format(floatval($value['precio']), 2, '.', ',')?></p>
-    <p>&nbsp &nbsp &nbsp <b>Cantidad:</b> <?= $value['cantidad'];?></p>
-    <p>&nbsp &nbsp &nbsp <b>Total:</b>
-        $<?= number_format(floatval($value['cantidad']*floatval($value['precio'])), 2, '.', ',');?></p>--<br>
+    <div class="info-producto">
+        <div class="ancho-minimo">
+            <p><b>Nombre:</b> <?= $value['nombre'];?></p>
+            <p><b>Precio:</b> $<?= number_format(floatval($value['precio']), 2, '.', ',')?></p>
+            <p><b>Cantidad:</b> <?= $value['cantidad'];?></p>
+            <p><b>Total:</b>
+                $<?= number_format(floatval($value['cantidad']*floatval($value['precio'])), 2, '.', ',');?>
+            </p>
+        </div>
+        <div>
+            <img src="../img/productos/<?= $value['id_producto']?>.png" alt="<?= $value['nombre']?>">
+        </div>
+    </div>
+    <br><br>
     <?php endforeach; ?>
 
     <script>
     var arreglo_de_productos = JSON.parse('<?= json_encode($arreglo); ?>');
     </script>
-    <input type="submit" value="Confirmar compra" class="btn btn-default"
-        onclick="comprar(arreglo_de_productos,<?=(int) $vaciar_carrito?>)">
-    <input type="submit" value="Cancelar compra" class="btn btn-default"
-        onclick="window.location.replace('../index.php')">
+    <div class="centrar-botones">
+        <input type="submit" value="Confirmar compra" class="btn btn-default boton"
+            onclick="comprar(arreglo_de_productos,<?=(int) $vaciar_carrito?>)">
+        <input type="submit" value="Cancelar compra" class="btn btn-default boton"
+            onclick="window.location.replace('../index.php')">
+    </div>
 </body>
 
 </html>

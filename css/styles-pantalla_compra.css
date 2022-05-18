@@ -6,7 +6,46 @@ html{
 }
 .container{
     margin-top: 50px;
-    padding-bottom: 2rem;
+    padding: 0 3rem 2rem 3rem;
+}
+
+.boton {
+    background-color: #272727;
+    color: var(--blanco);
+}
+
+.boton:hover {
+    background-color: rgb(212, 212, 212);
+    color: var(--negro);
+}
+img{
+    height: 120px;
+}
+.info-producto{
+    padding-top: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+h1, h4{
+    text-align: center;
+}
+.centrar-texto{
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+}
+.ancho-minimo{
+    width: 500px;
+}
+.centrar-botones{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: center;
+}
+hr{
+    margin-top: 5px;
 }
 
 @media (max-width:1146px) {
