@@ -105,6 +105,7 @@ $arreglo_para_comprar=array();
             </div>
         </nav>
     </header>
+    <!-- fin barra de navegación -->
 
     <?php if ($n_productos==0): ?>
     <h1 class="h1">TU CARRITO ESTA VACIO</h1>
