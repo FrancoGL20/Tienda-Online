@@ -1,6 +1,6 @@
 # Tienda-Online
 
-    El proyecto consta de una plataforma de
+    El proyecto es una versión simplificada de una tienda online, con conexión a una base de datos MariaDB, cuenta con lista de productos, carrito personal, historial de compras para el administrador y posibilidad de modificar la información de los productos.
 
 ## Instalación
 
