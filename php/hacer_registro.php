@@ -1,4 +1,5 @@
 <?php
+require_once("../config/config.php");
 session_start();
 if (!isset($_SESSION['sesion_personal'])) {
     header("Location: ./iniciar_sesion.php");
@@ -21,7 +22,7 @@ echo "</pre>";
 echo "<br>";
 echo "<br>";
 
-$con = mysqli_connect("localhost", "root", "", "tienda_online");
+$con = mysqli_connect($db_hostname, $db_username, $db_password, $db_name);
 if (mysqli_connect_errno()) :
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
 else:

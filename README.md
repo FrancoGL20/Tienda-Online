@@ -1,47 +1,32 @@
 # Tienda-Online
-    El proyecto consta de la creación de una página de una tienda online para Desarrollo Web.
-## Estructura de la DB:
-* Usuario:
-    1. id_usuario **PK**
-    2. nombre_usuario
-    3. fecha_nacimiento
-    4. correo_usuario
-    5. contraseña
-    6. numero_tarjeta
-    7. direccion
-* Carrito:
-    1. id_usuario **FK**
-    2. id_producto **FK**
-* Producto:
-    2. id_producto PK
-    3. nombre_producto
-    4. descripcion_producto
-    5. imagen_producto
-    6. cantidad_disponible
-    7. precio_producto
-    8. fabricante
-    9. origen
-* Historial_compras:
-    1. id_historial PK
-    2. id_usuario FK
-    3. id_producto FK
-    4. fecha_y_hora_compra
+
+    El proyecto consta de una plataforma de
+
+## Instalación
+
+1. Descargar el respositorio en un directorio en que se pueda ejecutar tanto el PHP, como SQL. Por ejemplo: al utilizar XAMPP se puede colocar dentro del directorio `htdocs` o en un directorio interno especial.
+2. Crear una base de datos en el sistema manejador que se esté utilizando, hay un documento SQL de inserción de datos para prueba en el archivo [tienda_online.sql](DB/tienda_online.sql) con el que se puede visualizar tanto la forma en que se creó y modeló la base de datos, como la forma en que se deben realizar las distintas consultas si es que se desean agregar más archivos con conexión a la misma.
+3. Realizar la configuración de parametros para la conexión personalizada a la base de datos utilizada en el archivo [`config.php`](config/config.php)
+4. Una vez seguidos los pasos anteriores, se debe tener corriendo el servicio de PHP junto con el de SQL para poder probar 
+
+## Estructura de la DB
+
+![Diagrama E-R](img/readme/tienda_online.png)
+
 ## Estructura de las páginas
-* main 
-  * muestra los productos existentes
-  * aunque no se inicie sesión
-    * verificar el caso en el que se inicia sesión
-* inicio de sesión
-  * permite registrar un usuario (sin permisos especiales)
+
+* main, lista de productos
+  * muestra los productos existentes aunque no se inicie sesión
+    * se tienen contemplados los casos de tratar de comprar sin iniciar sesión
+* inicio de sesión, registro
+  * permite iniciar sesión a un usuario o crear uno (sin permisos especiales)
 * página del administrador
-  * en el main debe aparecer un boton que diga administrar productos
+  * al iniciar sesión como un usuario administrador se muestran 2 opciones extra que son la consulta de historial de ventas y modificación de productos
 * información del usuario
   * todos los datos del mismo
 * carrito de compras del usuario
-  * info acerca del sitio
-## Categorias de productos
-* monitores
-* teclados
-* accesorios
-* ordenadores
-* gamer
+  * lista personalizada que posee un usuario donde puede guardar las cosas que desea comprar en otro momento
+
+## Licencia
+
+MIT
